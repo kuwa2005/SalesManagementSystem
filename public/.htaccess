@@ -1,22 +1,7 @@
 RewriteEngine On
+RewriteBase /SalesManagementSystem/
 
 # 既存ファイル・ディレクトリ以外はindex.phpにリライト
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
-
-# セキュリティヘッダー
-<IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-XSS-Protection "1; mode=block"
-</IfModule>
-
-# ディレクトリリストを禁止
-Options -Indexes
-
-# setup.php以外のPHPファイルへの直接アクセスを制限（オプション）
-# <Files "setup.php">
-#     Order Allow,Deny
-#     Allow from all
-# </Files>

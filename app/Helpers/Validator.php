@@ -52,8 +52,10 @@ class Validator {
     public function date(string $field, string $label = ''): self {
         $label = $label ?: $field;
         if (isset($this->data[$field]) && $this->data[$field] !== '') {
-            $d = DateTime::createFromFormat('Y/m/d', $this->data[$field]);
-            if (!$d || $d->format('Y/m/d') !== $this->data[$field]) {
+            $val = $this->data[$field];
+            $d = DateTime::createFromFormat('Y/m/d', $val)
+                ?: DateTime::createFromFormat('Y-m-d', $val);
+            if (!$d) {
                 $this->errors[$field] = "{$label}は正しい日付形式で入力してください。";
             }
         }

@@ -367,7 +367,7 @@ $products = $stmt->fetchAll();
                     <div class="form-group">
                         <label for="sales_slip_no">伝票番号</label>
                         <input type="text" id="sales_slip_no" name="sales_slip_no" maxlength="10"
-                               value="<?= htmlspecialchars($slip['sales_slip_no'] ?? ($companyInfo['slip_numbering_method'] == 3 ? '' : '自動')) ?>"
+                               value="<?= htmlspecialchars($slip['sales_slip_no'] ?? (($companyInfo['slip_numbering_method'] ?? 1) == 3 ? '' : '自動')) ?>"
                                <?= ($companyInfo['slip_numbering_method'] ?? 1) != 3 ? 'readonly style="background: #f1f5f9;"' : '' ?>>
                     </div>
                     <div class="form-group">

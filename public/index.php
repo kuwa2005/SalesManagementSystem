@@ -27,6 +27,8 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $path = rtrim($path, '/');
 $base = '/SalesManagementSystem';
 $path = str_replace($base, '', $path);
+// .php拡張子を除去
+$path = preg_replace('/\.php$/', '', $path);
 
 // デフォルトはトップページ
 if ($path === '' || $path === '/') {
@@ -67,6 +69,25 @@ $routes = [
     '/sales/output' => __DIR__ . '/app/Controllers/Sales/SalesOutputController.php',
     '/invoice/create' => __DIR__ . '/app/Controllers/Invoice/InvoiceController.php',
     '/payment/input' => __DIR__ . '/app/Controllers/Payment/PaymentController.php',
+    '/report/ledger' => __DIR__ . '/app/Controllers/Report/LedgerController.php',
+    '/report/balance' => __DIR__ . '/app/Controllers/Report/BalanceController.php',
+    '/report/sales-detail' => __DIR__ . '/app/Controllers/Report/SalesDetailController.php',
+    '/external/accounting' => __DIR__ . '/app/Controllers/External/AccountingController.php',
+    '/admin/year' => __DIR__ . '/app/Controllers/Admin/YearController.php',
+    '/admin/user-info' => __DIR__ . '/app/Controllers/Admin/UserInfoController.php',
+    '/admin/users' => __DIR__ . '/app/Controllers/Admin/UserController.php',
+    '/admin/permission' => __DIR__ . '/app/Controllers/Admin/PermissionController.php',
+    '/invoice/output' => __DIR__ . '/app/Controllers/Invoice/InvoiceOutputController.php',
+    '/invoice/release' => __DIR__ . '/app/Controllers/Invoice/InvoiceReleaseController.php',
+    '/payment/list' => __DIR__ . '/app/Controllers/Payment/PaymentListController.php',
+    '/payment/receipt' => __DIR__ . '/app/Controllers/Payment/ReceiptController.php',
+    '/report/daily' => __DIR__ . '/app/Controllers/Report/DailyController.php',
+    '/report/monthly' => __DIR__ . '/app/Controllers/Report/MonthlyController.php',
+    '/report/trend' => __DIR__ . '/app/Controllers/Report/TrendController.php',
+    '/report/ranking' => __DIR__ . '/app/Controllers/Report/RankingController.php',
+    '/report/analysis' => __DIR__ . '/app/Controllers/Report/AnalysisController.php',
+    '/inquiry/customer' => __DIR__ . '/app/Controllers/Inquiry/CustomerInquiryController.php',
+    '/inquiry/product' => __DIR__ . '/app/Controllers/Inquiry/ProductInquiryController.php',
 ];
 
 foreach ($routes as $route => $file) {
