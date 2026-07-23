@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# 既存ファイル・ディレクトリ以外はindex.phpにリライト
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# セキュリティヘッダー
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# ディレクトリリストを禁止
+Options -Indexes
+
+# .envファイルへのアクセスを禁止
+<Files ".env">
+    Order Allow,Deny
+    Deny from all
+</Files>

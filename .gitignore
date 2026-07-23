@@ -1,0 +1,19 @@
+# ログファイル
+*.log
+
+# アップロードファイル（実運用で再生成）
+public/uploads/*
+!public/uploads/.gitkeep
+
+# 設定ファイル（本番環境用）
+app/Config/database.php
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
