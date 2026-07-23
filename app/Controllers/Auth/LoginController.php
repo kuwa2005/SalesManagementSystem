@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="tenant_code">契約者ID</label>
                 <input type="text" id="tenant_code" name="tenant_code"
-                       value="<?= htmlspecialchars($tenantCode ?? '') ?>" required>
+                       value="<?= htmlspecialchars($tenantCode ?? 'DEMO001') ?>" required>
             </div>
 
             <div class="form-group">
