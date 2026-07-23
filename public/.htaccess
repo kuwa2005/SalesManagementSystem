@@ -15,8 +15,8 @@ RewriteRule ^(.*)$ index.php [QSA,L]
 # ディレクトリリストを禁止
 Options -Indexes
 
-# .envファイルへのアクセスを禁止
-<Files ".env">
-    Order Allow,Deny
-    Deny from all
-</Files>
+# setup.php以外のPHPファイルへの直接アクセスを制限（オプション）
+# <Files "setup.php">
+#     Order Allow,Deny
+#     Allow from all
+# </Files>

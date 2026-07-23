@@ -102,17 +102,17 @@ if ($action === 'edit' && $id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>入金区分マスタ - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">入金区分マスタ</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -126,7 +126,7 @@ if ($action === 'edit' && $id) {
 
         <?php if ($action === 'list'): ?>
         <div class="search-form">
-            <form method="get" action="/master/payment-type.php">
+            <form method="get" action="/SalesManagementSystem/master/payment-type.php">
                 <div class="form-row">
                     <div class="form-group" style="flex: 3;">
                         <label for="keyword">検索</label>
@@ -143,7 +143,7 @@ if ($action === 'edit' && $id) {
         <div class="table-container">
             <div class="table-header">
                 <h2>入金区分一覧</h2>
-                <a href="/master/payment-type.php?action=create" class="btn btn-primary">新規登録</a>
+                <a href="/SalesManagementSystem/master/payment-type.php?action=create" class="btn btn-primary">新規登録</a>
             </div>
 
             <table>
@@ -165,8 +165,8 @@ if ($action === 'edit' && $id) {
                         <td><?= htmlspecialchars($row['payment_type_code']) ?></td>
                         <td><?= htmlspecialchars($row['payment_type_name']) ?></td>
                         <td class="text-center">
-                            <a href="/master/payment-type.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">編集</a>
-                            <form method="post" action="/master/payment-type.php" style="display: inline;" onsubmit="return confirm('本当に削除しますか？');">
+                            <a href="/SalesManagementSystem/master/payment-type.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">編集</a>
+                            <form method="post" action="/SalesManagementSystem/master/payment-type.php" style="display: inline;" onsubmit="return confirm('本当に削除しますか？');">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                 <button type="submit" class="btn btn-small btn-danger">削除</button>
@@ -184,7 +184,7 @@ if ($action === 'edit' && $id) {
                     <?php if ($p == $paymentTypes['page']): ?>
                         <span class="current"><?= $p ?></span>
                     <?php else: ?>
-                        <a href="/master/payment-type.php?page=<?= $p ?>&keyword=<?= urlencode($_GET['keyword'] ?? '') ?>"><?= $p ?></a>
+                        <a href="/SalesManagementSystem/master/payment-type.php?page=<?= $p ?>&keyword=<?= urlencode($_GET['keyword'] ?? '') ?>"><?= $p ?></a>
                     <?php endif; ?>
                 <?php endfor; ?>
             </div>
@@ -194,7 +194,7 @@ if ($action === 'edit' && $id) {
         <?php else: ?>
         <div class="slip-form">
             <h2 style="margin-bottom: 20px;"><?= $action === 'edit' ? '入金区分編集' : '入金区分登録' ?></h2>
-            <form method="post" action="/master/payment-type.php">
+            <form method="post" action="/SalesManagementSystem/master/payment-type.php">
                 <?= Csrf::field() ?>
                 <input type="hidden" name="action" value="<?= $action === 'edit' ? 'update' : 'create' ?>">
                 <?php if ($action === 'edit'): ?><input type="hidden" name="id" value="<?= $id ?>"><?php endif; ?>
@@ -224,7 +224,7 @@ if ($action === 'edit' && $id) {
 
                 <div style="text-align: center; margin-top: 24px;">
                     <button type="submit" class="btn btn-primary">登録</button>
-                    <a href="/master/payment-type.php" class="btn btn-secondary">一覧に戻る</a>
+                    <a href="/SalesManagementSystem/master/payment-type.php" class="btn btn-secondary">一覧に戻る</a>
                 </div>
             </form>
         </div>

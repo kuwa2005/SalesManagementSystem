@@ -228,7 +228,7 @@ $products = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>売上伝票入力 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
     <script>
     // 得意先選択時の自動設定
     function onCustomerChange(code) {
@@ -335,12 +335,12 @@ $products = $stmt->fetchAll();
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">売上伝票入力</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -356,7 +356,7 @@ $products = $stmt->fetchAll();
         <div class="slip-form">
             <h2 style="margin-bottom: 20px;"><?= $action === 'edit' ? '売上伝票訂正' : '売上伝票入力' ?></h2>
 
-            <form method="post" action="/sales/input.php" id="salesForm">
+            <form method="post" action="/SalesManagementSystem/sales/input.php" id="salesForm">
                 <?= Csrf::field() ?>
                 <input type="hidden" name="action" value="<?= $action === 'edit' ? 'update' : 'create' ?>">
                 <?php if ($action === 'edit'): ?>
@@ -597,24 +597,24 @@ $products = $stmt->fetchAll();
                 <div style="text-align: center; margin-top: 24px;">
                     <button type="submit" class="btn btn-primary">登録</button>
                     <?php if ($action === 'edit'): ?>
-                        <a href="/sales/input.php" class="btn btn-secondary">新規入力へ</a>
+                        <a href="/SalesManagementSystem/sales/input.php" class="btn btn-secondary">新規入力へ</a>
                     <?php endif; ?>
                 </div>
             </form>
 
             <?php if ($action === 'edit'): ?>
             <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: center;">
-                <form method="post" action="/sales/input.php" style="display: inline;" onsubmit="return confirm('この伝票を削除しますか？');">
+                <form method="post" action="/SalesManagementSystem/sales/input.php" style="display: inline;" onsubmit="return confirm('この伝票を削除しますか？');">
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <button type="submit" class="btn btn-danger">削除</button>
                 </form>
-                <form method="post" action="/sales/input.php" style="display: inline;" onsubmit="return confirm('この伝票を複写しますか？');">
+                <form method="post" action="/SalesManagementSystem/sales/input.php" style="display: inline;" onsubmit="return confirm('この伝票を複写しますか？');">
                     <input type="hidden" name="action" value="copy">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <button type="submit" class="btn btn-secondary">複写</button>
                 </form>
-                <form method="post" action="/sales/input.php" style="display: inline;" onsubmit="return confirm('この伝票の赤伝を登録しますか？');">
+                <form method="post" action="/SalesManagementSystem/sales/input.php" style="display: inline;" onsubmit="return confirm('この伝票の赤伝を登録しますか？');">
                     <input type="hidden" name="action" value="red_slip">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <button type="submit" class="btn btn-danger">赤伝</button>

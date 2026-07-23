@@ -153,7 +153,7 @@ if ($action === 'edit' && $id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>入金入力 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
     <script>
     // 得意先選択時の未請求売上表示
     function onCustomerChange(code) {
@@ -188,12 +188,12 @@ if ($action === 'edit' && $id) {
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">入金入力</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -209,7 +209,7 @@ if ($action === 'edit' && $id) {
         <div class="slip-form">
             <h2 style="margin-bottom: 20px;"><?= $action === 'edit' ? '入金伝票訂正' : '入金入力' ?></h2>
 
-            <form method="post" action="/payment/input.php">
+            <form method="post" action="/SalesManagementSystem/payment/input.php">
                 <?= Csrf::field() ?>
                 <input type="hidden" name="action" value="<?= $action === 'edit' ? 'update' : 'create' ?>">
                 <?php if ($action === 'edit'): ?>
@@ -330,14 +330,14 @@ if ($action === 'edit' && $id) {
                 <div style="text-align: center; margin-top: 24px;">
                     <button type="submit" class="btn btn-primary">登録</button>
                     <?php if ($action === 'edit'): ?>
-                        <a href="/payment/input.php" class="btn btn-secondary">新規入力へ</a>
+                        <a href="/SalesManagementSystem/payment/input.php" class="btn btn-secondary">新規入力へ</a>
                     <?php endif; ?>
                 </div>
             </form>
 
             <?php if ($action === 'edit'): ?>
             <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: center;">
-                <form method="post" action="/payment/input.php" style="display: inline;" onsubmit="return confirm('この伝票を削除しますか？');">
+                <form method="post" action="/SalesManagementSystem/payment/input.php" style="display: inline;" onsubmit="return confirm('この伝票を削除しますか？');">
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <button type="submit" class="btn btn-danger">削除</button>
@@ -349,7 +349,7 @@ if ($action === 'edit' && $id) {
         <?php elseif ($action === 'list'): ?>
         <!-- 入金伝票一覧 -->
         <div class="search-form">
-            <form method="get" action="/payment/input.php">
+            <form method="get" action="/SalesManagementSystem/payment/input.php">
                 <input type="hidden" name="action" value="list">
                 <div class="form-row">
                     <div class="form-group">
@@ -382,7 +382,7 @@ if ($action === 'edit' && $id) {
         <div class="table-container">
             <div class="table-header">
                 <h2>入金伝票一覧</h2>
-                <a href="/payment/input.php" class="btn btn-primary">新規登録</a>
+                <a href="/SalesManagementSystem/payment/input.php" class="btn btn-primary">新規登録</a>
             </div>
 
             <table>
@@ -406,7 +406,7 @@ if ($action === 'edit' && $id) {
                         <td><?= htmlspecialchars($row['customer_name'] ?? $row['customer_code']) ?></td>
                         <td class="text-right"><?= number_format($row['total_amount']) ?></td>
                         <td class="text-center">
-                            <a href="/payment/input.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">編集</a>
+                            <a href="/SalesManagementSystem/payment/input.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">編集</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -420,7 +420,7 @@ if ($action === 'edit' && $id) {
                     <?php if ($p == $payments['page']): ?>
                         <span class="current"><?= $p ?></span>
                     <?php else: ?>
-                        <a href="/payment/input.php?action=list&page=<?= $p ?>&customer_code=<?= urlencode($_GET['customer_code'] ?? '') ?>&date_from=<?= urlencode($_GET['date_from'] ?? '') ?>&date_to=<?= urlencode($_GET['date_to'] ?? '') ?>"><?= $p ?></a>
+                        <a href="/SalesManagementSystem/payment/input.php?action=list&page=<?= $p ?>&customer_code=<?= urlencode($_GET['customer_code'] ?? '') ?>&date_from=<?= urlencode($_GET['date_from'] ?? '') ?>&date_to=<?= urlencode($_GET['date_to'] ?? '') ?>"><?= $p ?></a>
                     <?php endif; ?>
                 <?php endfor; ?>
             </div>

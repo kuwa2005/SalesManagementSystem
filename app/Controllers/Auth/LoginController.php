@@ -9,9 +9,9 @@ Session::start();
 // 既にログイン済み
 if (Session::isLoggedIn()) {
     if (Session::getFiscalYearId()) {
-        header('Location: /top.php');
+        header('Location: /SalesManagementSystem/');
     } else {
-        header('Location: /year-select.php');
+        header('Location: /SalesManagementSystem/');
     }
     exit;
 }
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $user = Auth::login($tenantCode, $loginId, $password);
         if ($user) {
-            header('Location: /year-select.php');
+            header('Location: /SalesManagementSystem/');
             exit;
         } else {
             $error = '契約者ID、ログインID、パスワードが正しくありません。';
@@ -44,12 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body class="login-page">
     <div class="login-container">
         <h1><?= APP_NAME ?></h1>
-        <form method="post" action="/login.php">
+        <form method="post" action="/SalesManagementSystem/">
             <?= Csrf::field() ?>
 
             <?php if ($error): ?>
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div class="login-links">
-            <a href="/password-reset.php">パスワードをお忘れですか？</a>
+            <a href="/SalesManagementSystem/password-reset.php">パスワードをお忘れですか？</a>
         </div>
     </div>
 </body>

@@ -76,17 +76,17 @@ $customers = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>売上伝票出力 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">売上伝票出力</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -99,7 +99,7 @@ $customers = $stmt->fetchAll();
         <?php endif; ?>
 
         <div class="search-form">
-            <form method="get" action="/sales/output.php">
+            <form method="get" action="/SalesManagementSystem/sales/output.php">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="customer_code">得意先</label>
@@ -131,7 +131,7 @@ $customers = $stmt->fetchAll();
         <div class="table-container">
             <div class="table-header">
                 <h2>売上伝票一覧</h2>
-                <form method="post" action="/sales/output.php" style="display: inline;">
+                <form method="post" action="/SalesManagementSystem/sales/output.php" style="display: inline;">
                     <?= Csrf::field() ?>
                     <input type="hidden" name="action" value="csv_output">
                     <input type="hidden" name="customer_code" value="<?= htmlspecialchars($conditions['customer_code'] ?? '') ?>">
@@ -168,7 +168,7 @@ $customers = $stmt->fetchAll();
                         <td class="text-right"><?= number_format($row['total_amount'] + $row['tax_amount']) ?></td>
                         <td><?= $row['status'] == 0 ? '未請求' : '請求締済' ?></td>
                         <td class="text-center">
-                            <a href="/sales/input.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">伝票</a>
+                            <a href="/SalesManagementSystem/sales/input.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">伝票</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -182,7 +182,7 @@ $customers = $stmt->fetchAll();
                     <?php if ($p == $slips['page']): ?>
                         <span class="current"><?= $p ?></span>
                     <?php else: ?>
-                        <a href="/sales/output.php?page=<?= $p ?>&customer_code=<?= urlencode($conditions['customer_code'] ?? '') ?>&date_from=<?= urlencode($conditions['date_from'] ?? '') ?>&date_to=<?= urlencode($conditions['date_to'] ?? '') ?>"><?= $p ?></a>
+                        <a href="/SalesManagementSystem/sales/output.php?page=<?= $p ?>&customer_code=<?= urlencode($conditions['customer_code'] ?? '') ?>&date_from=<?= urlencode($conditions['date_from'] ?? '') ?>&date_to=<?= urlencode($conditions['date_to'] ?? '') ?>"><?= $p ?></a>
                     <?php endif; ?>
                 <?php endfor; ?>
             </div>

@@ -55,17 +55,17 @@ $customers = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>売上伝票検索 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">売上伝票検索</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -78,7 +78,7 @@ $customers = $stmt->fetchAll();
         <?php endif; ?>
 
         <div class="search-form">
-            <form method="get" action="/sales/search.php">
+            <form method="get" action="/SalesManagementSystem/sales/search.php">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="keyword">キーワード</label>
@@ -124,7 +124,7 @@ $customers = $stmt->fetchAll();
         <div class="table-container">
             <div class="table-header">
                 <h2>売上伝票一覧</h2>
-                <a href="/sales/input.php" class="btn btn-primary">新規登録</a>
+                <a href="/SalesManagementSystem/sales/input.php" class="btn btn-primary">新規登録</a>
             </div>
 
             <table>
@@ -154,9 +154,9 @@ $customers = $stmt->fetchAll();
                         <td class="text-right"><?= number_format($row['total_amount'] + $row['tax_amount']) ?></td>
                         <td><?= $row['status'] == 0 ? '未請求' : '請求締済' ?></td>
                         <td class="text-center">
-                            <a href="/sales/input.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">編集</a>
+                            <a href="/SalesManagementSystem/sales/input.php?action=edit&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">編集</a>
                             <?php if ($row['status'] == 0): ?>
-                            <form method="post" action="/sales/search.php" style="display: inline;" onsubmit="return confirm('本当に削除しますか？');">
+                            <form method="post" action="/SalesManagementSystem/sales/search.php" style="display: inline;" onsubmit="return confirm('本当に削除しますか？');">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                 <button type="submit" class="btn btn-small btn-danger">削除</button>
@@ -175,7 +175,7 @@ $customers = $stmt->fetchAll();
                     <?php if ($p == $slips['page']): ?>
                         <span class="current"><?= $p ?></span>
                     <?php else: ?>
-                        <a href="/sales/search.php?page=<?= $p ?>&keyword=<?= urlencode($conditions['keyword'] ?? '') ?>&customer_code=<?= urlencode($conditions['customer_code'] ?? '') ?>&date_from=<?= urlencode($conditions['date_from'] ?? '') ?>&date_to=<?= urlencode($conditions['date_to'] ?? '') ?>&status=<?= urlencode($conditions['status'] ?? '') ?>"><?= $p ?></a>
+                        <a href="/SalesManagementSystem/sales/search.php?page=<?= $p ?>&keyword=<?= urlencode($conditions['keyword'] ?? '') ?>&customer_code=<?= urlencode($conditions['customer_code'] ?? '') ?>&date_from=<?= urlencode($conditions['date_from'] ?? '') ?>&date_to=<?= urlencode($conditions['date_to'] ?? '') ?>&status=<?= urlencode($conditions['status'] ?? '') ?>"><?= $p ?></a>
                     <?php endif; ?>
                 <?php endfor; ?>
             </div>

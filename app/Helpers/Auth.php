@@ -37,21 +37,21 @@ class Auth {
     public static function requireLogin(): void {
         Session::start();
         if (!Session::isLoggedIn()) {
-            header('Location: /login.php');
+            header('Location: /SalesManagementSystem/');
             exit;
         }
     }
 
     public static function requireFiscalYear(): void {
         if (Session::getFiscalYearId() === null) {
-            header('Location: /year-select.php');
+            header('Location: /SalesManagementSystem/');
             exit;
         }
     }
 
     public static function requireAdmin(): void {
         if (!Session::isAdmin()) {
-            header('Location: /top.php');
+            header('Location: /SalesManagementSystem/');
             exit;
         }
     }

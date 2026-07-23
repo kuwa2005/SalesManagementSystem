@@ -91,17 +91,17 @@ $companyInfo = $company->getCurrent();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>基本情報登録 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">基本情報登録</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -117,7 +117,7 @@ $companyInfo = $company->getCurrent();
         <div class="slip-form">
             <h2 style="margin-bottom: 20px;">会社情報</h2>
 
-            <form method="post" action="/master/company.php">
+            <form method="post" action="/SalesManagementSystem/master/company.php">
                 <?= Csrf::field() ?>
 
                 <div class="form-row">

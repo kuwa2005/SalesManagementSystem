@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($fy) {
             Session::set('fiscal_year_id', $fiscalYearId);
             Session::set('fiscal_year_label', $fy['year_label']);
-            header('Location: /top.php');
+            header('Location: /SalesManagementSystem/');
             exit;
         }
     }
@@ -59,7 +59,7 @@ if (empty($fiscalYears) && Session::getFiscalYearId() === null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>年度選択 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body class="login-page">
     <div class="login-container">
@@ -72,7 +72,7 @@ if (empty($fiscalYears) && Session::getFiscalYearId() === null) {
         <?php if (empty($fiscalYears)): ?>
             <p>利用可能な年度がありません。管理者にお問い合わせください。</p>
         <?php else: ?>
-            <form method="post" action="/year-select.php">
+            <form method="post" action="/SalesManagementSystem/">
                 <div class="form-group">
                     <label for="fiscal_year_id">事業年度を選択</label>
                     <select id="fiscal_year_id" name="fiscal_year_id" required>
@@ -90,7 +90,7 @@ if (empty($fiscalYears) && Session::getFiscalYearId() === null) {
         <?php endif; ?>
 
         <div class="login-links">
-            <a href="/login.php">ログイン画面に戻る</a>
+            <a href="/SalesManagementSystem/">ログイン画面に戻る</a>
         </div>
     </div>
 </body>

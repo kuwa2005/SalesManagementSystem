@@ -5,5 +5,5 @@ require_once __DIR__ . '/../../Helpers/Auth.php';
 Session::start();
 Auth::logout();
 
-header('Location: /login.php');
+header('Location: /SalesManagementSystem/');
 exit;

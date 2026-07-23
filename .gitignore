@@ -17,3 +17,5 @@ app/Config/database.php
 # OS
 .DS_Store
 Thumbs.db
+node_modules/
+tests/

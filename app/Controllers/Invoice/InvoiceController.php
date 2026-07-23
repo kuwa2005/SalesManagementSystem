@@ -184,17 +184,17 @@ if ($action === 'view' && $id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>請求書作成 - <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/SalesManagementSystem/public/css/style.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="/top.php" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
+            <a href="/SalesManagementSystem/" style="font-size: 18px; color: #1e293b;"><?= APP_NAME ?></a>
             <span style="margin-left: 16px; color: #64748b;">請求書作成</span>
         </div>
         <div class="header-right">
             <span class="fiscal-year"><?= htmlspecialchars(Session::get('fiscal_year_label')) ?>年度</span>
-            <a href="/top.php" class="btn btn-small btn-secondary">TOP</a>
+            <a href="/SalesManagementSystem/" class="btn btn-small btn-secondary">TOP</a>
         </div>
     </header>
 
@@ -211,7 +211,7 @@ if ($action === 'view' && $id) {
         <div class="slip-form">
             <h2 style="margin-bottom: 20px;">請求書作成</h2>
 
-            <form method="post" action="/invoice/create.php">
+            <form method="post" action="/SalesManagementSystem/invoice/create.php">
                 <?= Csrf::field() ?>
                 <input type="hidden" name="action" value="create">
 
@@ -293,8 +293,8 @@ if ($action === 'view' && $id) {
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2>請求書</h2>
                 <div>
-                    <a href="/invoice/create.php" class="btn btn-secondary">新規作成</a>
-                    <a href="/invoice/create.php?action=list" class="btn btn-secondary">一覧</a>
+                    <a href="/SalesManagementSystem/invoice/create.php" class="btn btn-secondary">新規作成</a>
+                    <a href="/SalesManagementSystem/invoice/create.php?action=list" class="btn btn-secondary">一覧</a>
                 </div>
             </div>
 
@@ -374,7 +374,7 @@ if ($action === 'view' && $id) {
         <?php elseif ($action === 'list'): ?>
         <!-- 請求書一覧 -->
         <div class="search-form">
-            <form method="get" action="/invoice/create.php">
+            <form method="get" action="/SalesManagementSystem/invoice/create.php">
                 <input type="hidden" name="action" value="list">
                 <div class="form-row">
                     <div class="form-group">
@@ -407,7 +407,7 @@ if ($action === 'view' && $id) {
         <div class="table-container">
             <div class="table-header">
                 <h2>請求書一覧</h2>
-                <a href="/invoice/create.php" class="btn btn-primary">新規作成</a>
+                <a href="/SalesManagementSystem/invoice/create.php" class="btn btn-primary">新規作成</a>
             </div>
 
             <table>
@@ -438,9 +438,9 @@ if ($action === 'view' && $id) {
                             ?>
                         </td>
                         <td class="text-center">
-                            <a href="/invoice/create.php?action=view&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">表示</a>
+                            <a href="/SalesManagementSystem/invoice/create.php?action=view&id=<?= $row['id'] ?>" class="btn btn-small btn-secondary">表示</a>
                             <?php if ($row['status'] == 1): ?>
-                            <form method="post" action="/invoice/create.php" style="display: inline;" onsubmit="return confirm('この請求書の締を解除しますか？');">
+                            <form method="post" action="/SalesManagementSystem/invoice/create.php" style="display: inline;" onsubmit="return confirm('この請求書の締を解除しますか？');">
                                 <input type="hidden" name="action" value="release">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                 <button type="submit" class="btn btn-small btn-danger">解除</button>
@@ -459,7 +459,7 @@ if ($action === 'view' && $id) {
                     <?php if ($p == $invoices['page']): ?>
                         <span class="current"><?= $p ?></span>
                     <?php else: ?>
-                        <a href="/invoice/create.php?action=list&page=<?= $p ?>&customer_code=<?= urlencode($_GET['customer_code'] ?? '') ?>&date_from=<?= urlencode($_GET['date_from'] ?? '') ?>&date_to=<?= urlencode($_GET['date_to'] ?? '') ?>"><?= $p ?></a>
+                        <a href="/SalesManagementSystem/invoice/create.php?action=list&page=<?= $p ?>&customer_code=<?= urlencode($_GET['customer_code'] ?? '') ?>&date_from=<?= urlencode($_GET['date_from'] ?? '') ?>&date_to=<?= urlencode($_GET['date_to'] ?? '') ?>"><?= $p ?></a>
                     <?php endif; ?>
                 <?php endfor; ?>
             </div>
