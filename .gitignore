@@ -8,6 +8,10 @@ public/uploads/*
 # 設定ファイル（本番環境用）
 app/Config/database.php
 
+# 機密情報を含むファイル
+deploy.sh
+public/setup.php
+
 # IDE
 .vscode/
 .idea/
