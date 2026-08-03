@@ -10,6 +10,5 @@ CREATE TABLE IF NOT EXISTS super_admins (
     UNIQUE KEY uk_admin_id (admin_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- スーパー管理者（パスワード: admin123）
-INSERT INTO super_admins (admin_id, password_hash, admin_name) VALUES
-('superadmin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'システム管理者');
+-- スーパー管理者は初期データとして作成しない（認証情報は .env に記述）
+-- 初期化は public/setup.php をブラウザで実行してください（.env の SUPER_ADMIN_PASSWORD で作成されます）

@@ -89,10 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($postAction === 'reset_password') {
         $targetId = (int)($_POST['id'] ?? 0);
-        $newPass = 'password';
+        $newPass = env('DEFAULT_USER_PASSWORD', 'password');
         $stmt = $db->prepare("UPDATE users SET password_hash = ? WHERE id = ?");
         $stmt->execute([Auth::hashPassword($newPass), $targetId]);
-        $success = 'パスワードを初期化しました（初期パスワード: password）';
+        $success = 'パスワードを初期化しました（初期パスワード: ' . $newPass . '）';
         $action = 'list';
     }
 }

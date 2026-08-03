@@ -162,19 +162,43 @@ mysql -u ユーザー名 -p sales_management < sql/schema.sql
 mysql -u ユーザー名 -p sales_management < sql/seed.sql
 ```
 
-### 5. 設定ファイル編集
+### 5. 環境変数の設定
 
-`app/Config/database.php` でデータベース接続情報を編集:
+`.env.example` をコピーして実値を設定:
 
-```php
-<?php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'sales_management');
-define('DB_USER', 'your_user');
-define('DB_PASS', 'your_password');
+```bash
+cp .env.example .env
 ```
 
-### 6. ディレクトリ権限
+`.env` に接続情報・初期パスワードを記述します（`.env` は gitignore 済みでコミットされません）:
+
+```dotenv
+# データベース接続
+DB_HOST=localhost
+DB_NAME=sales_management
+DB_USER=your_user
+DB_PASS=your_password
+DB_CHARSET=utf8mb4
+
+# FTP デプロイ接続（deploy.sh が参照）
+FTP_HOST=ftp.example.com
+FTP_USER=your_ftp_user
+FTP_PASS=your_ftp_password
+
+# 初期パスワード（setup.php による初期化、パスワード初期化機能で使用）
+INITIAL_ADMIN_PASSWORD=change_me
+DEFAULT_USER_PASSWORD=change_me
+SUPER_ADMIN_PASSWORD=change_me
+```
+
+### 6. 初期データ投入（ユーザ作成含む）
+
+`sql/seed.sql` はマスタ・テナントデータのみで、**ユーザは作成しません**。
+管理者・スーパー管理者の作成は `public/setup.php` をブラウザで実行します（`.env` の `INITIAL_ADMIN_PASSWORD` / `SUPER_ADMIN_PASSWORD` で初期パスワードが設定されます）。
+
+> **注意**: `setup.php` は本番サーバーで誰でも実行できてしまうため、**初期化後は必ずサーバーから削除**してください。
+
+### 7. ディレクトリ権限
 
 ```bash
 chmod 755 public/
@@ -183,11 +207,22 @@ chmod 777 public/uploads/
 
 ## デフォルトログイン情報
 
+初期管理者（`setup.php` 実行後）:
+
 | 項目 | 値 |
 |------|-----|
 | 契約者ID | DEMO001 |
 | ログインID | admin |
-| パスワード | password |
+| パスワード | `.env` の `INITIAL_ADMIN_PASSWORD` |
+
+スーパー管理者（`/SalesManagementSystem/system/admin/login.php`）:
+
+| 項目 | 値 |
+|------|-----|
+| ログインID | superadmin |
+| パスワード | `.env` の `SUPER_ADMIN_PASSWORD` |
+
+> 導入後は必ず `.env` の各パスワードを変更してください。
 
 ## 主要業務ルール
 

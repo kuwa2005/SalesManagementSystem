@@ -5,8 +5,10 @@
 public/uploads/*
 !public/uploads/.gitkeep
 
-# 設定ファイル（本番環境用）
-app/Config/database.php
+# 環境変数（秘密情報）
+.env
+.env.*
+!.env.example
 
 # 機密情報を含むファイル
 deploy.sh

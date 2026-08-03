@@ -8,13 +8,8 @@ VALUES ('DEMO001', 'デモ株式会社', 1, 10, 999999);
 INSERT INTO fiscal_years (tenant_id, year_label, start_date, end_date, is_current)
 VALUES (1, '2026', '2026-04-01', '2027-03-31', 1);
 
--- 管理者ユーザ（パスワード: password）
-INSERT INTO users (tenant_id, login_id, password_hash, user_name, email, role_type)
-VALUES (1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '管理者', 'admin@example.com', 0);
-
--- 利用者ユーザ（パスワード: password）
-INSERT INTO users (tenant_id, login_id, password_hash, user_name, email, role_type)
-VALUES (1, 'user1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'テスト太郎', 'user1@example.com', 1);
+-- 管理者・利用者ユーザは作成しない（初期パスワード等の認証情報は .env に記述）
+-- 初期化は public/setup.php をブラウザで実行してください（.env の INITIAL_ADMIN_PASSWORD で作成されます）
 
 -- 全権限を管理者に付与
 INSERT INTO permissions (user_id, category_code, function_code, permission_level)
